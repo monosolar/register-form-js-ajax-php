@@ -24,29 +24,28 @@
         <form role="form">
 
             <div class="form-group has-feedback has-feedback-left">
-                <input id="firstNameTextInput" type="text" class="form-control" placeholder="First Name" />
+                <input id="first_nameTextInput" type="text" class="form-control" placeholder="First Name" onfocus="inputFocus(this)" />
                 <i class="glyphicon glyphicon-ice-lolly-tasted form-control-feedback"></i>
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-                <input id="lastNameTextInput" type="text" class="form-control" placeholder="Last Name" />
+                <input id="last_nameTextInput" type="text" class="form-control" placeholder="Last Name" onfocus="inputFocus(this)" />
                 <i class="glyphicon glyphicon-ice-lolly form-control-feedback"></i>
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-                <input id="emailTextInput" type="text" class="form-control" placeholder="E-mail" />
+                <input id="emailTextInput" type="text" class="form-control" placeholder="E-mail" onfocus="inputFocus(this)" />
                 <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
-
             </div>
 
             <div class="form-group has-feedback has-feedback-left ">
-                <input id="passwordTextInput" type="password" class="form-control" placeholder="Password" />
+                <input id="passwordTextInput" type="password" class="form-control" placeholder="Password" onfocus="inputFocus(this)" />
                 <i class="glyphicon glyphicon-pencil form-control-feedback"></i>
             </div>
 
             <ul id="basicResponseDiv" class="list-group"> </ul>
 
-            <div class="row-fluid">
+            <div class="row" style="text-align:center">
                 <button type="button" onclick="sendRequest()" class="content btn btn-secondary btn-lg">Registration</button>
             </div>
 
