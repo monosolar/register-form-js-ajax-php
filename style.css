@@ -1,0 +1,15 @@
+.blue-bg-field{
+    background-color: #5D9AE4;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 5px 5px 10px grey;
+}
+
+.container{
+    max-width: 450px;
+}
+
+.white{
+    color: #fff;
+}

@@ -11,15 +11,14 @@ function formDivError(formDiv, errorEnable)
     var errorClass = " has-error";
     var hasErrorMark = formDiv.className.indexOf(errorClass) > -1;
 
-    console.log("►",errorEnable,hasErrorMark);
-
     if (errorEnable == hasErrorMark) return;
 
     if (errorEnable)
     {
         formDiv.className += errorClass;
-
-    } else {
+    }
+    else
+    {
         formDiv.className = formDiv.className.replace(errorClass, "");
     }
 }
@@ -36,11 +35,9 @@ function sendRequest() {
     clearErrorsContainer();
 
     var requestVars = getRequestVars();
-
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = onRequestResponsed;
-
 
     var varsString = '';
 
@@ -51,7 +48,6 @@ function sendRequest() {
 
         varsString += varId + "=" + requestVars[varId];
     }
-
 
     xmlhttp.open("POST", "api.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
