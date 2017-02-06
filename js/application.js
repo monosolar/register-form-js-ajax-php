@@ -97,8 +97,8 @@ function Application() {
     {
         var errorLi = document.createElement('li');
         errorLi.className = "list-group-item list-group-item-danger"
-        errorLi.innerHTML = "<i class='glyphicon glyphicon-remove' style='margin-right: 5px'></i>";
-        errorLi.innerHTML += "<b style='margin-right: 5px'>" + type.replace("_"," ") + ":" + "</b>";
+        errorLi.innerHTML = "<i class='glyphicon glyphicon-remove right-margin'></i>";
+        errorLi.innerHTML += "<b class='right-margin'>" + type.replace("_"," ") + ":" + "</b>";
         errorLi.innerHTML += text;
 
         document.getElementById("basicResponseDiv").appendChild(errorLi);
