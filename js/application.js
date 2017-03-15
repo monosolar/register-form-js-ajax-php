@@ -57,14 +57,12 @@ function Application() {
     }
 
     function getRequestVars(){
-        var varsObj = {};
-
-        varsObj['first_name'] = document.getElementById("first_nameTextInput").value;
-        varsObj['last_name'] = document.getElementById("last_nameTextInput").value;
-        varsObj['email'] = document.getElementById("emailTextInput").value;
-        varsObj['password'] = document.getElementById("passwordTextInput").value;
-
-        return  varsObj;
+        return  {
+            first_name: document.getElementById("first_nameTextInput").value,
+            last_name: document.getElementById("last_nameTextInput").value,
+            email: document.getElementById("emailTextInput").value,
+            password: document.getElementById("passwordTextInput").value
+        };
     }
 
     function onRequestResponsed(evt)
