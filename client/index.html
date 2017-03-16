@@ -18,6 +18,7 @@
 <body>
 
 
+
 <div class="container" >
 
     <div class="blue-bg-field">
@@ -46,7 +47,7 @@
             <ul id="basicResponseDiv" class="list-group"> </ul>
 
             <div class="row text-center">
-                <button type="button" onclick="sendRequest()" class="content btn btn-secondary btn-lg">Registration</button>
+                <button type="button" onclick="onSendButtonClick()" class="content btn btn-secondary btn-lg">Registration</button>
             </div>
 
         </form>
@@ -55,6 +56,11 @@
 
 </div>
 
+<li id="errorItemToClone" class="list-group-item list-group-item-danger hided-error-item">
+    <i class='glyphicon glyphicon-remove right-margin'></i>
+    <b id="typeField" class='right-margin'>Error type:</b>
+    Error description Error descriptionError description
+</li>
 
 
 </body>

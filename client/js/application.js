@@ -1,108 +1,107 @@
-
 function Application() {
 
     const successFilePath = "content/success.html";
     const apiPath = "../server/api.php";
 
-    this.inputFocus = function(inputElem) {
-
+    this.inputFocus = function (inputElem) {
         var parentDiv = inputElem.parentElement
-
         formDivError(parentDiv, false);
     }
 
-    this.sendRequest = function() {
+    this.sendRequest = function () {
 
-        clearErrorsContainer();
+        const varsString = getRequestVars()
+            .map(e => `${e.key}=${e.value}`)
+            .join("&");
 
-        var requestVars = getRequestVars();
         var xmlhttp = new XMLHttpRequest();
-
         xmlhttp.onreadystatechange = onRequestResponsed;
-
-        var varsString = '';
-
-        for (var varId in requestVars)
-        {
-            if (varsString.length != 0)
-                varsString += '&';
-
-            varsString += varId + "=" + requestVars[varId];
-        }
-
         xmlhttp.open("POST", apiPath, true);
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send(varsString);
     }
 
-    function formDivError(formDiv, errorEnable)
-    {
-        var errorClass = " has-error";
-        var hasErrorMark = formDiv.className.indexOf(errorClass) > -1;
+    this.clearErrorsContainer = function () {
+        document.getElementById("basicResponseDiv").innerHTML = "";
+    }
 
-        if (errorEnable == hasErrorMark) return;
+    function formDivError(formDiv, errorEnable) {
+        const errorClass = "has-error";
 
-        if (errorEnable)
-        {
-            formDiv.className += errorClass;
-        }
-        else
-        {
-            formDiv.className = formDiv.className.replace(errorClass, "");
+        if (formDiv.classList.contains(errorClass)) return;
+
+        if (errorEnable) {
+            formDiv.classList.add(errorClass);
+        } else {
+            formDiv.classList.remove(errorClass);
         }
     }
 
-    function highlightFormElemByType(type)
-    {
+    function highlightFormElemByType(type) {
         var inputElemID = type + "TextInput";
         var parentDiv = document.getElementById(inputElemID).parentElement;
         formDivError(parentDiv, true);
     }
 
-    function getRequestVars(){
-        return  {
-            first_name: document.getElementById("first_nameTextInput").value,
-            last_name: document.getElementById("last_nameTextInput").value,
-            email: document.getElementById("emailTextInput").value,
-            password: document.getElementById("passwordTextInput").value
-        };
+    function getRequestVars() {
+        return [
+            {key: "first_name", value: document.getElementById("first_nameTextInput").value},
+            {key: "last_name", value: document.getElementById("last_nameTextInput").value},
+            {key: "email", value: document.getElementById("emailTextInput").value},
+            {key: "password", value: document.getElementById("passwordTextInput").value}
+        ];
     }
 
-    function onRequestResponsed(evt)
-    {
-        if (this.readyState == 4 && this.status == 200) {
+    function onRequestResponsed(evt) {
+        if (this.readyState === 4 && this.status === 200) {
+
             document.getElementById("basicResponseDiv").innerHTML = "";
 
             var responseObj = JSON.parse(this.responseText);
 
-            if (responseObj.status == "ok")
-            {
+            if (responseObj.status === "ok") {
                 window.location = successFilePath;
             } else {
-
-                for (type in responseObj.errors)
-                {
+                for (type in responseObj.errors) {
                     addErrorToDocument(type, responseObj.errors[type]);
                     highlightFormElemByType(type);
                 }
             }
+
+            /*try {
+
+
+
+            } catch (err) {
+                alert("JSON error");
+            }*/
         }
     }
 
-    function clearErrorsContainer()
-    {
-        document.getElementById("basicResponseDiv").innerHTML = "";
-    }
-
-    function addErrorToDocument(type, text)
-    {
+    function addErrorToDocument(type, text) {
         var errorLi = document.createElement('li');
         errorLi.className = "list-group-item list-group-item-danger"
         errorLi.innerHTML = "<i class='glyphicon glyphicon-remove right-margin'></i>";
-        errorLi.innerHTML += "<b class='right-margin'>" + type.replace("_"," ") + ":" + "</b>";
+        errorLi.innerHTML += "<b class='right-margin'>" + type.replace(/_/g, " ") + ":" + "</b>";
         errorLi.innerHTML += text;
 
         document.getElementById("basicResponseDiv").appendChild(errorLi);
+
+
+       /* const errorItemToClone = document.getElementById('errorItemToClone');
+
+        const errorItem = errorItemToClone.cloneNode(true);
+        errorItem.removeAttribute('id');
+        errorItem.classList.remove('hided-error-item');
+        errorItem.textContent = text;
+
+        console.log("----->", errorItemToClone, errorItem);
+
+        return;
+
+        errorItem.getElementById('typeField').textContent = type.replace(/_/g, " ") + ":";
+        document.getElementById("basicResponseDiv").appendChild(errorItem);*/
+
     }
 }
 
@@ -112,6 +111,7 @@ function inputFocus(inputElem) {
     application.inputFocus(inputElem);
 }
 
-function sendRequest() {
+function onSendButtonClick() {
+    application.clearErrorsContainer();
     application.sendRequest();
 }
