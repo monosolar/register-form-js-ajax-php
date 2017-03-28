@@ -55,53 +55,34 @@ function Application() {
     function onRequestResponsed(evt) {
         if (this.readyState === 4 && this.status === 200) {
 
-            document.getElementById("basicResponseDiv").innerHTML = "";
+            try {
+                document.getElementById("basicResponseDiv").innerHTML = "";
 
-            var responseObj = JSON.parse(this.responseText);
+                var responseObj = JSON.parse(this.responseText);
 
-            if (responseObj.status === "ok") {
-                window.location = successFilePath;
-            } else {
-                for (type in responseObj.errors) {
-                    addErrorToDocument(type, responseObj.errors[type]);
-                    highlightFormElemByType(type);
+                if (responseObj.status === "ok") {
+                    window.location = successFilePath;
+                } else {
+                    for (type in responseObj.errors) {
+                        addErrorToDocument(type, responseObj.errors[type]);
+                        highlightFormElemByType(type);
+                    }
                 }
-            }
-
-            /*try {
-
-
 
             } catch (err) {
                 alert("JSON error");
-            }*/
+            }
         }
     }
 
     function addErrorToDocument(type, text) {
-        var errorLi = document.createElement('li');
-        errorLi.className = "list-group-item list-group-item-danger"
-        errorLi.innerHTML = "<i class='glyphicon glyphicon-remove right-margin'></i>";
-        errorLi.innerHTML += "<b class='right-margin'>" + type.replace(/_/g, " ") + ":" + "</b>";
-        errorLi.innerHTML += text;
+        const errorItem = document.getElementById('errorItemToClone').cloneNode(true);
 
-        document.getElementById("basicResponseDiv").appendChild(errorLi);
-
-
-       /* const errorItemToClone = document.getElementById('errorItemToClone');
-
-        const errorItem = errorItemToClone.cloneNode(true);
         errorItem.removeAttribute('id');
         errorItem.classList.remove('hided-error-item');
-        errorItem.textContent = text;
-
-        console.log("----->", errorItemToClone, errorItem);
-
-        return;
-
-        errorItem.getElementById('typeField').textContent = type.replace(/_/g, " ") + ":";
-        document.getElementById("basicResponseDiv").appendChild(errorItem);*/
-
+        errorItem.querySelector('span').innerHTML = text;
+        errorItem.querySelector('b').textContent += type.replace(/_/g, " ") + ":";
+        document.getElementById("basicResponseDiv").appendChild(errorItem)
     }
 }
 

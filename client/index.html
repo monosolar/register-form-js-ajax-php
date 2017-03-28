@@ -18,50 +18,52 @@
 <body>
 
 
-
-<div class="container" >
+<div class="container">
 
     <div class="blue-bg-field">
         <form role="form">
 
             <div class="form-group has-feedback has-feedback-left">
-                <input id="first_nameTextInput" type="text" class="form-control" placeholder="First Name" onfocus="inputFocus(this)" />
+                <input id="first_nameTextInput" type="text" class="form-control" placeholder="First Name"
+                       onfocus="inputFocus(this)"/>
                 <i class="glyphicon glyphicon-ice-lolly-tasted form-control-feedback"></i>
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-                <input id="last_nameTextInput" type="text" class="form-control" placeholder="Last Name" onfocus="inputFocus(this)" />
+                <input id="last_nameTextInput" type="text" class="form-control" placeholder="Last Name"
+                       onfocus="inputFocus(this)"/>
                 <i class="glyphicon glyphicon-ice-lolly form-control-feedback"></i>
             </div>
 
             <div class="form-group has-feedback has-feedback-left">
-                <input id="emailTextInput" type="text" class="form-control" placeholder="E-mail" onfocus="inputFocus(this)" />
+                <input id="emailTextInput" type="text" class="form-control" placeholder="E-mail"
+                       onfocus="inputFocus(this)"/>
                 <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
             </div>
 
             <div class="form-group has-feedback has-feedback-left ">
-                <input id="passwordTextInput" type="password" class="form-control" placeholder="Password" onfocus="inputFocus(this)" />
+                <input id="passwordTextInput" type="password" class="form-control" placeholder="Password"
+                       onfocus="inputFocus(this)"/>
                 <i class="glyphicon glyphicon-pencil form-control-feedback"></i>
             </div>
 
-            <ul id="basicResponseDiv" class="list-group"> </ul>
+            <ul id="basicResponseDiv" class="list-group"></ul>
 
             <div class="row text-center">
-                <button type="button" onclick="onSendButtonClick()" class="content btn btn-secondary btn-lg">Registration</button>
+                <button type="button" onclick="onSendButtonClick()" class="content btn btn-secondary btn-lg">
+                    Registration
+                </button>
             </div>
 
         </form>
     </div>
-
-
 </div>
 
 <li id="errorItemToClone" class="list-group-item list-group-item-danger hided-error-item">
     <i class='glyphicon glyphicon-remove right-margin'></i>
-    <b id="typeField" class='right-margin'>Error type:</b>
-    Error description Error descriptionError description
+    <b id="typeField" class='right-margin'>Error type: </b>
+    <span></span>
 </li>
-
 
 </body>
 
